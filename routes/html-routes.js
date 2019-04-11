@@ -5,7 +5,11 @@ var router = express.Router();
 var Salon = require("../models/salon");
 
 router.get("/", function(req, res) {
-  res.render("index", { title: "blah" });
+  res.render(
+    "index"
+    //add object here
+    //, { title: "blah" }
+  );
 });
 
 module.exports = router;
