@@ -1,0 +1,24 @@
+{{!-- Header with logo img --}}
+
+<header>
+    <img class="logo">
+</header>
+
+{{!-- navbar with two buttons: services and deals. Data-highlight to specify when clicked --}}
+<nav>
+    <button id="services" data-highlight="on">Services</button>
+    <button id="deals" data-highlight="off">Deals</button>
+</nav>
+
+{{!-- services buttons --}}
+<div class="service-buttons">
+</div>
+
+{{!-- search results appears in grid of 3 columns --}}
+<div class="search-result">
+    <div class="row">
+        {{#each search}}
+        <div class="col-4"></div>
+        {{/each}}
+    </div>
+</div>
