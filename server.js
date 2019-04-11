@@ -29,8 +29,14 @@ require("PATH TO ROUTES");
 //app.listen always goes at the end of your code
 
 //replace app.listen with code below when database is set up
-//db.sequelize.sync().then(function() {
+db.sequelize.sync().then(function () {
+    app.listen(PORT, function () {
+        console.log("App listening on PORT:" + PORT);
+    });
 
 app.listen(PORT, function () {
   console.log("App listening on PORT:" + PORT);
 });
+
+
+
