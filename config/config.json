@@ -2,9 +2,9 @@
   "development": {
     "username": "root",
     "password": "root",
-    "database": "database_development",
+    "database": "salon_db",
     "host": "127.0.0.1",
-    "port": "",
+    "port": 3307,
     "dialect": "mysql"
   },
   "test": {
