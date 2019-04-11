@@ -1,5 +1,15 @@
 var db = require("../models");
+var path = require("path");
+var express = require("express");
+var router = express.Router();
+var Salon = require("../models/salon");
 
-module.exports = function(app) {
-  //ALL HTML ROUTES CODE GOES HERE
-};
+router.get("/", function(req, res) {
+  res.render(
+    "index"
+    //add object here
+    //, { title: "blah" }
+  );
+});
+
+module.exports = router;
