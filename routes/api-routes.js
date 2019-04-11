@@ -1,4 +1,5 @@
 var db = require("../models");
+var Salon = require("../models/salon");
 
 module.exports = function (app) {
 
@@ -49,6 +50,6 @@ module.exports = function (app) {
     // this route can't be completed without frontend js
   })
 
+}
 
 
-};
