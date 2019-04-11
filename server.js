@@ -14,6 +14,12 @@ var db = require("./models");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// Sets up handlebars to render HTML pages
+var exphbs = require("express-handlebars");
+
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
 // Static directory
 app.use(express.static("public"));
 
@@ -25,6 +31,6 @@ require("PATH TO ROUTES");
 //replace app.listen with code below when database is set up
 //db.sequelize.sync().then(function() {
 
-app.listen(PORT, function() {
+app.listen(PORT, function () {
   console.log("App listening on PORT:" + PORT);
 });
