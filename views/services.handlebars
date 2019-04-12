@@ -1,21 +1,4 @@
-{{!-- Header with logo img --}}
-
-<header>
-    <img class="logo">
-</header>
-
-{{!-- navbar with two buttons: services and deals. Data-highlight to specify when clicked --}}
-<nav>
-    <a href="/services" class="nav-col" id="services">
-        <p>search for</p>
-        <p id="big">SERVICES</p>
-    </a>
-    <a href="/services" class="nav-col" id="deals">
-        <p id="deals-text">CURRENT DEALS</p>
-</nav>
-
-{{!-- services buttons --}}
-<div class="service-buttons">
+<div class="services-container" {{!-- services buttons --}} <div class="service-buttons">
     <button class="serv-buttons" id="spa">Spa</button>
     <button class="serv-buttons" id="hair">Hair</button>
     <button class="serv-buttons" id="nails">Nails</button>
@@ -23,6 +6,7 @@
 
 {{!-- search results appears in grid of 3 columns --}}
 <div class="search-result">
+    <p>These are the results of your search!</p>
     <div class="row">
         {{#each data}}
         <div class="col-4">{{name}}</div>
@@ -31,3 +15,4 @@
 </div>
 
 {{!-- To print cards on grid: https://stackoverflow.com/questions/26831128/handlebars-js-and-bootstrap-grid-wrap-columns-in-row --}}
+</div>
