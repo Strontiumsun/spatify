@@ -1,17 +1,7 @@
-{{!-- Header with logo img --}}
-
-<header>
-    <img class="logo">
-</header>
-
-{{!-- navbar with two buttons: services and deals. Data-highlight to specify when clicked --}}
-<nav>
-    <button id="services" data-highlight="on">Services</button>
-    <button id="deals" data-highlight="off">Deals</button>
-</nav>
-
-{{!-- services buttons --}}
-<div class="service-buttons">
+<div class="services-container" {{!-- services buttons --}} <div class="service-buttons">
+    <button class="serv-buttons" id="spa">Spa</button>
+    <button class="serv-buttons" id="hair">Hair</button>
+    <button class="serv-buttons" id="nails">Nails</button>
 </div>
 
 {{!-- search results appears in grid of 3 columns --}}
@@ -34,3 +24,4 @@
 </div>
 
 {{!-- To print cards on grid: https://stackoverflow.com/questions/26831128/handlebars-js-and-bootstrap-grid-wrap-columns-in-row --}}
+</div>
