@@ -1,20 +1,26 @@
-{{!-- Header with logo img --}}
-
 <header>
-    <img class="logo">
+    <p class="logo">spatify</p>
+    <p id="2019">2019</p>
 </header>
-
-{{!-- navbar with two buttons: services and deals. Data-highlight to specify when clicked --}}
-<nav>
-    <button id="services" data-highlight="on">Services</button>
-    <button id="deals" data-highlight="off">Deals</button>
-</nav>
-
-{{!-- services buttons --}}
+<div class="nav">
+    <a href="services.html" class="nav-col" id="services">
+        <p>search for SERVICES</p>
+    </a>
+    <a href="services.html" class="nav-col" id="deals">
+        <p>CURRENT DEALS</p>
+        <p></p>
+    </a>
+</div>
+<!-- !-- services buttons -- -->
 <div class="service-buttons">
+    <button id="hair">Hair Salon</button>
+    <button id="nails">Nails Salon</button>
+    <button id="Spa">Spa</button>
+    <button id="skin">Skin Care</button>
+    <button id="massage">Massage</button>
 </div>
 
-{{!-- search results appears in grid of 3 columns --}}
+<!-- !-- search results appears in grid of 3 columns -- -->
 <div class="search-result">
     <div class="row">
         {{#each search}}
@@ -22,5 +28,3 @@
         {{/each}}
     </div>
 </div>
-
-{{!-- To print cards on grid: https://stackoverflow.com/questions/26831128/handlebars-js-and-bootstrap-grid-wrap-columns-in-row --}}
