@@ -6,12 +6,19 @@
 
 {{!-- navbar with two buttons: services and deals. Data-highlight to specify when clicked --}}
 <nav>
-    <button id="services" data-highlight="on">Services</button>
-    <button id="deals" data-highlight="off">Deals</button>
+    <a href="/services" class="nav-col" id="services">
+        <p>search for</p>
+        <p id="big">SERVICES</p>
+    </a>
+    <a href="/services" class="nav-col" id="deals">
+        <p id="deals-text">CURRENT DEALS</p>
 </nav>
 
 {{!-- services buttons --}}
 <div class="service-buttons">
+    <button class="serv-buttons" id="spa">Spa</button>
+    <button class="serv-buttons" id="hair">Hair</button>
+    <button class="serv-buttons" id="nails">Nails</button>
 </div>
 
 {{!-- search results appears in grid of 3 columns --}}
