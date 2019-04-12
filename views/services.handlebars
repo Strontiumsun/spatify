@@ -19,9 +19,9 @@
     <div class="container">
         <div class="row">
             {{#each data}}
-            <div class="col-3" style="background: red;">
+            <div class="col s12 m6 l4">
                 <div class="card text-center">
-                    <div class="card-body" style="background-image: url('{{image}}')">
+                    <div class="card-body" style="background-image: url('{{image}}');">
                         <h5 class="card-title">{{name}}</h5>
                         <p class="card-text">{{services}}</p>
                         <a href="#" class="btn btn-primary">placeholder</a>
@@ -34,7 +34,3 @@
 </div>
 
 {{!-- To print cards on grid: https://stackoverflow.com/questions/26831128/handlebars-js-and-bootstrap-grid-wrap-columns-in-row --}}
-
-{{!-- {{#each data}}
-<div class="col-4">{{name}}: {{services}}</div>
-{{/each}} --}}
