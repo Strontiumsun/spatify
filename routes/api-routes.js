@@ -1,11 +1,15 @@
 var db = require("../models");
-var Salon = require("../models/salon");
+var moment = require('moment');
+moment().format();
+
+// var Salon = require("../models/salon");
 
 module.exports = function (app) {
 
   // this gets us all our salon data. Works
   app.get("/api/salons", function (req, res) {
     db.Salon.findAll().then(function (data) {
+      console.log(data)
       res.json(data)
     })
   })
@@ -21,8 +25,9 @@ module.exports = function (app) {
     db.Salon.findAll().then(function (data) {
       var serve;
       var server = [];
+      // console.log(data);
       for (var i = 0; i < data.length; i++) {
-        // console.log(data[i].services)
+        console.log(data[i].services)
 
         serve = data[i].services.toLowerCase();
         // https://stackoverflow.com/questions/16253742/return-all-values-from-array-in-lowercase-using-for-loop-instead-of-map
@@ -34,10 +39,75 @@ module.exports = function (app) {
         console.log(req.params.services)
         if (serve.includes(req.params.services)) {
           server.push(data[i])
+
           // console.log(server)
         }
       }
+      db.Service.findAll({
+        where: {
+          serviceType: req.params.services
+        }
+      }).then(function (data) {
+        console.log(data[0].dataValues.s_interval);
+        console.log(server[0].dataValues.opens, server[0].dataValues.closes)
+        var openTime = server[0].dataValues.opens;
+        var closeTime = server[0].dataValues.closes;
+        var interval = data[0].dataValues.s_interval
 
+        // function createIntervals(from, until, inter) {
+
+        //   var time = new Date(from);
+        //   var max = (Math.abs(until-from) / inter);
+        //   var intervals = [];
+
+        //   for (var i = 0; i <= max; i++) {
+        //     intervals.push(time);
+        //     var 
+        //   }
+        // }
+
+        // if store open 10 and close at 12, then there are 4 total intervals
+        // loop must run 4 times
+        // 
+
+        // var openTest = 10;
+        // var closeTest = 17;
+
+        // function timeRange(open, close, int) {
+        //   var range = parseFloat(close) - parseFloat(open);
+        //   console.log(range)
+
+        //   var timeNum = range / int;
+        //   console.log(timeNum)
+        // }
+        // console.log(timeRange(openTest, closeTest, interval))
+
+        // for (var j = 0; j < closeTime; j++) {
+        function addMinutes(time, minsToAdd, close) {
+          function D(J) { return (J < 10 ? '0' : '') + J };
+
+          var piece = time.split(':');
+
+          var mins = piece[0] * 60 + +piece[1] + +minsToAdd;
+
+          // --- the problem area ---
+          if (parseFloat(addMinutes(openTime, interval, close)) >= 20) {
+            console.log("stopped")
+
+          }
+          else {
+            addMinutes(openTime, interval, closeTime);
+            return D(mins % (24 * 60) / 60 | 0) + ':' + D(mins % 60);
+          }
+          // -------------------------
+        }
+        console.log(addMinutes(openTime, interval, closeTime));
+        // }
+
+
+        // '18:35'
+        // console.log(moment(openTime).format("HH"));
+      })
 
       res.json(server)
     })
