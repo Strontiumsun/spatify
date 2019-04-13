@@ -1,4 +1,5 @@
 var db = require("../models");
+var later = require('later');
 var moment = require('moment');
 moment().format();
 
@@ -48,11 +49,43 @@ module.exports = function (app) {
           serviceType: req.params.services
         }
       }).then(function (data) {
-        console.log(data[0].dataValues.s_interval);
-        console.log(server[0].dataValues.opens, server[0].dataValues.closes)
+        // console.log(data[0].dataValues.s_interval);
+        // console.log(server[0].dataValues.opens, server[0].dataValues.closes)
         var openTime = server[0].dataValues.opens;
         var closeTime = server[0].dataValues.closes;
-        var interval = data[0].dataValues.s_interval
+        var interval = data[0].dataValues.s_interval;
+        console.log(openTime, closeTime)
+        console.log(interval)
+
+        // function bigInterval(interval) {
+        //   var sched = later.schedule(later.parse.recur().on(interval).minute()),
+        //     start = new Date('2013-05-22T10:00:00Z');
+        //   end = new Date('2013-05-22T18:00:00Z')
+        //   console.log(sched.next(10, start, end))
+        // }
+        // bigInterval(90)
+
+        function laterIntervals(interval, dstart, dend) {
+
+
+
+          var trial = {
+            schedules: [
+              { m: [0, interval] }
+            ]
+          }
+          var sched = later.schedule(trial);
+
+
+          // var sched = later.schedule(later.parse.recur().on(interval).minute());
+          start = new Date(`2019-05-22T${dstart}Z`);
+          end = new Date(`2019-05-22T${dend}Z`)
+          // console.log(start, end);
+          console.log(sched.next(35, start, end))
+          // as long as the number here is sufficiently large, the program will run until it reaches the end time
+
+        }
+        laterIntervals(interval, openTime, closeTime);
 
         // function createIntervals(from, until, inter) {
 
@@ -83,25 +116,26 @@ module.exports = function (app) {
         // console.log(timeRange(openTest, closeTest, interval))
 
         // for (var j = 0; j < closeTime; j++) {
-        function addMinutes(time, minsToAdd, close) {
-          function D(J) { return (J < 10 ? '0' : '') + J };
+        // function addMinutes(time, minsToAdd, close) {
+        //   function D(J) { return (J < 10 ? '0' : '') + J };
 
-          var piece = time.split(':');
+        //   var piece = time.split(':');
 
-          var mins = piece[0] * 60 + +piece[1] + +minsToAdd;
+        //   var mins = piece[0] * 60 + +piece[1] + +minsToAdd;
 
-          // --- the problem area ---
-          if (parseFloat(addMinutes(openTime, interval, close)) >= 20) {
-            console.log("stopped")
+        //   // --- the problem area ---
+        //   if (i > 10) {
+        //     console.log("stopped")
 
-          }
-          else {
-            addMinutes(openTime, interval, closeTime);
-            return D(mins % (24 * 60) / 60 | 0) + ':' + D(mins % 60);
-          }
-          // -------------------------
-        }
-        console.log(addMinutes(openTime, interval, closeTime));
+        //   }
+        //   else {
+        //     addMinutes(openTime, interval, closeTime);
+        //     i++;
+        //     return D(mins % (24 * 60) / 60 | 0) + ':' + D(mins % 60);
+        //   }
+        //   // -------------------------
+        // }
+        // console.log(addMinutes(openTime, interval, closeTime));
         // }
 
 
