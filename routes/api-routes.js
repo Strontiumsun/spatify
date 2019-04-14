@@ -3,8 +3,6 @@ var later = require('later');
 var moment = require('moment');
 moment().format();
 
-// var Salon = require("../models/salon");
-
 module.exports = function (app) {
 
   // this gets us all our salon data. Works
@@ -49,43 +47,72 @@ module.exports = function (app) {
           serviceType: req.params.services
         }
       }).then(function (data) {
-        // console.log(data[0].dataValues.s_interval);
-        // console.log(server[0].dataValues.opens, server[0].dataValues.closes)
+
         var openTime = server[0].dataValues.opens;
         var closeTime = server[0].dataValues.closes;
+
         var interval = data[0].dataValues.s_interval;
+
         console.log(openTime, closeTime)
         console.log(interval)
 
-        // function bigInterval(interval) {
-        //   var sched = later.schedule(later.parse.recur().on(interval).minute()),
-        //     start = new Date('2013-05-22T10:00:00Z');
-        //   end = new Date('2013-05-22T18:00:00Z')
-        //   console.log(sched.next(10, start, end))
-        // }
-        // bigInterval(90)
-
+        // this is nearly working! Just have some time zone quibbles to deal with tomorrow
         function laterIntervals(interval, dstart, dend) {
 
-
-
-          var trial = {
-            schedules: [
-              { m: [0, interval] }
-            ]
-          }
-          var sched = later.schedule(trial);
-
-
-          // var sched = later.schedule(later.parse.recur().on(interval).minute());
+          var sched = later.schedule(later.parse.recur().every(interval).minute());
           start = new Date(`2019-05-22T${dstart}Z`);
           end = new Date(`2019-05-22T${dend}Z`)
-          // console.log(start, end);
-          console.log(sched.next(35, start, end))
+
+          var next = sched.next(35, start, end)
           // as long as the number here is sufficiently large, the program will run until it reaches the end time
+          // console.log(next[0].toString().split(" "))
+          console.log(next[0].toString())
+
+          // for (var i = 0; i < next.length; i++) {
+          //   var splitter = next[i].toString().split(" ");
+          //   console.log(splitter[4])
+          // }
+
 
         }
         laterIntervals(interval, openTime, closeTime);
+
+        // everything below here is stuff I tried either with npms or with basic js
+        // ---------------------------
+
+        // function makeSchedule(taskId, interval, salonName, openTime, closeTime) {
+        //   var tasks = [{ id: taskId, duration: interval }]
+
+
+        //   var resources = [{ id: salonName, available: later.parse.text(`after ${openTime} and before ${closeTime}`) }];
+        //   // console.log(tasks, resources)
+        //   var data = schedule.create(tasks, resources, later.parse.text(`every ${interval} minutes`), new Date())
+        //   console.log(data)
+
+        // }
+        // makeSchedule(taskId, interval, salonName, openTime, closeTime)
+
+        // function newTech(interval, openTime, closeTime) {
+        //   import { Scheduler } from '@ssense/sscheduler';
+        //   const scheduler = new Scheduler();
+        //   const availability = scheduler.getAvailability({
+        //     from: '2017-02-01',
+        //     to: '2017-03-01',
+        //     duration: interval,
+        //     interval: interval,
+        //     schedule: {
+        //       weekdays: {
+        //         from: openTime, to: closeTime
+        //       }
+        //     }
+        //   })
+
+        //   console.log(availability)
+
+        // }
+        // newTech(interval, openTime, closeTime)
+
+
 
         // function createIntervals(from, until, inter) {
 
