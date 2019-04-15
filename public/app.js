@@ -9,6 +9,7 @@ $(document).ready(function() {
     // ajax request for data - week7/day-4 - movies
   });
 
+
   $("#formSubmit").on("click", function(event) {
     event.preventDefault();
     console.log("form submitted!");
