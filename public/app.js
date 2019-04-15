@@ -9,12 +9,13 @@ $(document).ready(function() {
     // ajax request for data - week7/day-4 - movies
   });
 
-
   $("#formSubmit").on("click", function(event) {
     event.preventDefault();
+    var userEmail = $("#email")
+      .val()
+      .trim();
+    console.log("user email!", userEmail);
     console.log("form submitted!");
-    $.get("/email", function(data) {
-      console.log(data);
-    });
+    $.post("/email", { userEmail });
   });
 });
