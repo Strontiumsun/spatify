@@ -56,7 +56,7 @@ module.exports = function (app) {
         console.log(openTime, closeTime)
         console.log(interval)
 
-        // this is nearly working! Just have some time zone quibbles to deal with tomorrow
+        // this function calculates intervals from the start to the end of the day for that salon
         function laterIntervals(interval, dstart, dend) {
 
           var sched = later.schedule(later.parse.recur().every(interval).minute());
@@ -65,13 +65,13 @@ module.exports = function (app) {
 
           var next = sched.next(35, start, end)
           // as long as the number here is sufficiently large, the program will run until it reaches the end time
-          // console.log(next[0].toString().split(" "))
-          console.log(next[0].toString())
 
-          // for (var i = 0; i < next.length; i++) {
-          //   var splitter = next[i].toString().split(" ");
-          //   console.log(splitter[4])
-          // }
+          // console.log(next[0].toUTCString())
+
+          for (var i = 0; i < next.length; i++) {
+            var splitter = next[i].toUTCString().split(" ");
+            console.log(splitter[4])
+          }
 
 
         }
