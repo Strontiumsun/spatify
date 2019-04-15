@@ -26,7 +26,6 @@ app.use(express.static("public"));
 //Routes
 require("./routes/api-routes")(app);
 var routes = require("./routes/html-routes");
-
 app.use(routes);
 
 //app.listen always goes at the end of your code
