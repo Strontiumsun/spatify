@@ -6,13 +6,6 @@ $(document).ready(function () {
             event.preventDefault();
             var salonType = $(this).attr("id")
             $.ajax({
-                //     url: "/services",
-                //     success: function (result) {
-                //         // $("#div1").html(result);
-                //         console.log("ajax result:", result)
-                //     }
-                // });
-
                 url: "/services",
                 function(req, res) {
                     db.Salon.findAll(
@@ -25,7 +18,7 @@ $(document).ready(function () {
                             res.render(
                                 "services",
                                 //add object here
-                                { data: data }
+                                { data: data[0] }
                             );
                         });
 
