@@ -110,6 +110,17 @@ h5 {
   font-weight: 600;
 }
 
+.card {
+  box-shadow: none !important;
+  width: 400px;
+  height: 350px;
+  margin: 20px;
+}
+.card-body {
+  width: 400px;
+  height: 350px;
+}
+
 /* FORMS CSS */
 /* time row in form */
 .time {
