@@ -2,9 +2,9 @@
 
 * {
   box-sizing: border-box;
-  color: #401406;
 }
 
+/* INDEX, SERVICES, DEALS CSS */
 body {
   font-family: "Playfair Display", serif;
   background-color: #fff3e6;
@@ -14,11 +14,19 @@ header {
   height: 150px;
 }
 
+#about {
+  color: #401406;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+}
+
 .logo {
   margin-top: 25px;
   width: 150px;
 }
 
+/* big nav: service & deals */
 .nav {
   width: 100%;
   height: 170px;
@@ -29,10 +37,13 @@ header {
   height: 170px;
   text-align: center;
 }
+/* -----  */
 
+/* big orange button navigation "services" */
 #services {
   font-family: "IBM Plex Serif", serif;
   background-color: #ec9472;
+  color: #401406;
   font-weight: 700;
   font-size: 50px;
   margin-bottom: 0;
@@ -46,11 +57,6 @@ header {
   font-size: 50px;
   margin-bottom: 0;
 }
-/* #big {
-  margin-top: 0;
-  font-size: 50px;
-  font-weight: 700;
-} */
 
 .service-nav {
   width: 100%;
@@ -73,6 +79,39 @@ header {
   font-family: "Playfair Display", serif;
   font-size: 18px;
 }
+
+/* big blue deals button */
+#deals {
+  font-family: "IBM Plex Serif", serif;
+  font-weight: 700;
+  background-color: #a0bbbf;
+  color: #401406;
+  /* margin-top: 40px; */
+  font-size: 50px;
+  font-weight: 700;
+  /* line-height: 55px; */
+}
+
+/* about column content */
+.about {
+  margin-top: 40px;
+}
+.col-content {
+  padding: 20px 30px 20px 30px;
+  background-color: #ddc8bb;
+  color: #401406;
+  width: 350px;
+  height: 400px;
+  margin: 30px;
+  border-radius: 10px;
+}
+
+h5 {
+  font-weight: 600;
+}
+
+/* FORMS CSS */
+/* time row in form */
 .time {
   border: none;
   color: #401406;
@@ -109,16 +148,6 @@ header {
   font-family: "IBM Plex Serif", serif;
   font-weight: 700;
   text-decoration: underline;
-}
-
-#deals {
-  font-family: "IBM Plex Serif", serif;
-  font-weight: 700;
-  background-color: #a0bbbf;
-  /* margin-top: 40px; */
-  font-size: 50px;
-  font-weight: 700;
-  /* line-height: 55px; */
 }
 
 .form-style {
