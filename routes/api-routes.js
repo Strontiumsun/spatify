@@ -27,12 +27,12 @@ module.exports = function (app) {
       var server = [];
       // console.log(data);
       for (var i = 0; i < data.length; i++) {
-        console.log(data[i].services)
+        // console.log(data[i].services)
         serve = data[i].services.toLowerCase();
         serve = serve.split(", ")
-        console.log(serve)
+        // console.log(serve)
 
-        console.log(req.params.services)
+        // console.log(req.params.services)
         if (serve.includes(req.params.services)) {
           server.push(data[i])
         }
@@ -40,6 +40,7 @@ module.exports = function (app) {
 
 
       res.json(server)
+      // res.render("services", { data: server })
     })
   })
 

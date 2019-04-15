@@ -10,30 +10,31 @@
 
     </a>
 </div>
-<!-- !-- services buttons -- -->
+<!-- services buttons -->
 <div class="service-nav">
-    <button class="service-button" id="hair">Hair Salon</button>
-    <button class="service-button" id="nails">Nails Salon</button>
-    <button class="service-button" id="Spa">Spa</button>
-    <button class="service-button" id="skin">Skin Care</button>
-    <button class="service-button" id="massage">Massage</button>
+    <button class="service-button" data-name="hair" id="hair">Hair Salon</button>
+    <button class="service-button" data-name="nails" id="nails">Nails Salon</button>
+    <button class="service-button" data-name="spa" id="Spa">Spa</button>
+    <button class="service-button" data-name="skin" id="skin">Skin Care</button>
+    <button class="service-button" data-name="massage" id="massage">Massage</button>
 </div>
 
-<!-- !-- search results appears in grid of 3 columns -- -->
+<!-- search results appears in grid of 3 columns -->
 <div class="search-result">
     <div class="container">
         <div class="row">
-            {{#each data}}
+            {{!-- {{#each data}} --}}
             <div class="col s12 m6 l4">
-                <div class="card text-center">
-                    <div class="card-body" style="background-image: url('{{image}}');">
+                <div id="append-here" class="card text-center">
+
+                    {{!-- <div class="card-body" style="background-image: url('{{image}}');">
                         <h5 class="card-title">{{name}}</h5>
                         <p class="card-text">{{services}}</p>
                         <a href="#" class="btn btn-primary">placeholder</a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
-            {{/each}}
+            {{!-- {{/each}} --}}
         </div>
     </div>
 </div>

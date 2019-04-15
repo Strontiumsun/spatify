@@ -4,7 +4,7 @@ var express = require("express");
 var router = express.Router();
 var Salon = require("../models/salon");
 
-router.get("/", function(req, res) {
+router.get("/", function (req, res) {
   res.render(
     "index"
     //add object here
@@ -12,7 +12,7 @@ router.get("/", function(req, res) {
   );
 });
 
-router.get("/form", function(req, res) {
+router.get("/form", function (req, res) {
   res.render(
     "form"
     //add object here
@@ -20,15 +20,10 @@ router.get("/form", function(req, res) {
   );
 });
 
-router.get("/services", function(req, res) {
-  db.Salon.findAll().then(function(data) {
-    console.log(data);
-    res.render(
-      "services",
-      //add object here
-      { data: data }
-    );
-  });
+router.get("/services", function (req, res) {
+  res.render("services")
 });
+
+
 
 module.exports = router;
