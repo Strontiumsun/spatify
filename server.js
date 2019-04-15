@@ -24,7 +24,7 @@ app.set("view engine", "handlebars");
 app.use(express.static("public"));
 
 //Routes
-// require("./routes/api-routes")(app);
+require("./routes/api-routes")(app);
 // require("./routes/html-routes")(app);
 //app.use("/", require("./models/salon"));
 var routes = require("./routes/html-routes");
