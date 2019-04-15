@@ -12,16 +12,19 @@ $(document).ready(function () {
                 console.log("service: ", serv)
 
                 $("#result").append(`
-                <div class="col s12 m6 l4">
-                    <div class="card text-center">
-                        <div class="card-body" style="background-image: url('{{image}}');">
-                            <h5 class="card-title">{{name}}</h5>
-                            <p class="card-text">{{services}}</p>
-                            <a href="#" class="btn btn-primary">placeholder</a>
+                    <div class="col s12 m6 l4">
+                        <div class="card">
+                            <div class="card-image">
+                        <img src='${data[i].image}'>
+                        <span class="card-title">
+                            <h5>'${data[i].name}'</h5>
+                        </span>
+                        <div class="card-content">
+
+                            <p>'${data[i].services}'</p>
                         </div>
                     </div>
-                </div>
-                `)
+                    `)
             }
         });
         // });
