@@ -24,9 +24,9 @@ router.get("/services", function (req, res) {
   db.Salon.findAll().then(function (data) {
     // console.log(data);
     res.render(
-      "services",
+      "services"
       //add object here
-      { data: data }
+      //{ data: data }
     );
   });
 });
