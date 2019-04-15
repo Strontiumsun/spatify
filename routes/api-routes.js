@@ -42,14 +42,33 @@ module.exports = function (app) {
           // console.log(server)
         }
       }
+
+
+      res.json(server)
+    })
+  })
+
+  app.get("/api/salons/services/:services/:salonID", function (req, res) {
+    var service = req.params.services;
+    var salonID = req.params.salonID;
+    var foundSalon;
+    var timeArr = [];
+    console.log(service, salonID)
+    db.Salon.findAll({
+      where: {
+        id: salonID
+      }
+    }).then(function (data) {
+      foundSalon = data[0];
+      // console.log(foundSalon);
       db.Service.findAll({
         where: {
-          serviceType: req.params.services
+          serviceType: service
         }
       }).then(function (data) {
 
-        var openTime = server[0].dataValues.opens;
-        var closeTime = server[0].dataValues.closes;
+        var openTime = foundSalon.dataValues.opens;
+        var closeTime = foundSalon.dataValues.closes;
 
         var interval = data[0].dataValues.s_interval;
 
@@ -70,108 +89,19 @@ module.exports = function (app) {
 
           for (var i = 0; i < next.length; i++) {
             var splitter = next[i].toUTCString().split(" ");
-            console.log(splitter[4])
-          }
+            // console.log(splitter[4])
+            timeArr.push(splitter[4]);
 
+          }
+          console.log(timeArr)
 
         }
         laterIntervals(interval, openTime, closeTime);
-
-        // everything below here is stuff I tried either with npms or with basic js
-        // ---------------------------
-
-        // function makeSchedule(taskId, interval, salonName, openTime, closeTime) {
-        //   var tasks = [{ id: taskId, duration: interval }]
-
-
-        //   var resources = [{ id: salonName, available: later.parse.text(`after ${openTime} and before ${closeTime}`) }];
-        //   // console.log(tasks, resources)
-        //   var data = schedule.create(tasks, resources, later.parse.text(`every ${interval} minutes`), new Date())
-        //   console.log(data)
-
-        // }
-        // makeSchedule(taskId, interval, salonName, openTime, closeTime)
-
-        // function newTech(interval, openTime, closeTime) {
-        //   import { Scheduler } from '@ssense/sscheduler';
-        //   const scheduler = new Scheduler();
-        //   const availability = scheduler.getAvailability({
-        //     from: '2017-02-01',
-        //     to: '2017-03-01',
-        //     duration: interval,
-        //     interval: interval,
-        //     schedule: {
-        //       weekdays: {
-        //         from: openTime, to: closeTime
-        //       }
-        //     }
-        //   })
-
-        //   console.log(availability)
-
-        // }
-        // newTech(interval, openTime, closeTime)
-
-
-
-        // function createIntervals(from, until, inter) {
-
-        //   var time = new Date(from);
-        //   var max = (Math.abs(until-from) / inter);
-        //   var intervals = [];
-
-        //   for (var i = 0; i <= max; i++) {
-        //     intervals.push(time);
-        //     var 
-        //   }
-        // }
-
-        // if store open 10 and close at 12, then there are 4 total intervals
-        // loop must run 4 times
-        // 
-
-        // var openTest = 10;
-        // var closeTest = 17;
-
-        // function timeRange(open, close, int) {
-        //   var range = parseFloat(close) - parseFloat(open);
-        //   console.log(range)
-
-        //   var timeNum = range / int;
-        //   console.log(timeNum)
-        // }
-        // console.log(timeRange(openTest, closeTest, interval))
-
-        // for (var j = 0; j < closeTime; j++) {
-        // function addMinutes(time, minsToAdd, close) {
-        //   function D(J) { return (J < 10 ? '0' : '') + J };
-
-        //   var piece = time.split(':');
-
-        //   var mins = piece[0] * 60 + +piece[1] + +minsToAdd;
-
-        //   // --- the problem area ---
-        //   if (i > 10) {
-        //     console.log("stopped")
-
-        //   }
-        //   else {
-        //     addMinutes(openTime, interval, closeTime);
-        //     i++;
-        //     return D(mins % (24 * 60) / 60 | 0) + ':' + D(mins % 60);
-        //   }
-        //   // -------------------------
-        // }
-        // console.log(addMinutes(openTime, interval, closeTime));
-        // }
-
-
-        // '18:35'
-        // console.log(moment(openTime).format("HH"));
+        res.json({ times: timeArr })
       })
 
-      res.json(server)
-    })
+    });
+
   })
 
   // this route will let us save user data to the database
