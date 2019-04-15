@@ -24,9 +24,7 @@ app.set("view engine", "handlebars");
 app.use(express.static("public"));
 
 //Routes
-// require("./routes/api-routes")(app);
-// require("./routes/html-routes")(app);
-//app.use("/", require("./models/salon"));
+require("./routes/api-routes")(app);
 var routes = require("./routes/html-routes");
 
 app.use(routes);
@@ -34,8 +32,8 @@ app.use(routes);
 //app.listen always goes at the end of your code
 
 //replace app.listen with code below when database is set up
-db.sequelize.sync().then(function() {
-  app.listen(PORT, function() {
+db.sequelize.sync().then(function () {
+  app.listen(PORT, function () {
     console.log("App listening on PORT:" + PORT);
   });
 });
