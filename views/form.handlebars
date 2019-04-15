@@ -9,7 +9,8 @@ which queries "SELECT name, dates, times FROM salons WHERE id=${req.body.id}"
 append name to #spa-name, use flatpickr package to import available dates -->
 <div class="container">
     <div class="form-style">
-        <div id="spa-name">You chose: {{ this.spa - name }}</div>
+        {{!-- Name needs to come from some AJAX call or something but for now I'm just calling a placeholder from the db --}}
+        <div id="spa-name">You chose: {{ name }}</div>
         <div class="row">
             <div class="input-field col s6">
                 Your Name:
@@ -44,6 +45,6 @@ append name to #spa-name, use flatpickr package to import available dates -->
         </form>
         <br />
 
-        <button class="submit" type="submit">Submit</button>
+        <button class="submit" type="submit" id="formSubmit">Submit</button>
     </div>
 </div>

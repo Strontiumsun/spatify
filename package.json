@@ -25,6 +25,8 @@
     "later": "^1.2.0",
     "moment": "^2.24.0",
     "mysql2": "^1.6.5",
+    "nodemailer": "^6.1.0",
+    "nodemailer-express-handlebars": "^3.0.0",
     "path": "^0.12.7",
     "sequelize": "^5.3.4"
   },

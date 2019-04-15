@@ -1,4 +1,8 @@
 var db = require("../models");
+var Salon = require("../models/salon");
+const nodemailer = require("nodemailer");
+var exphbs = require("express-handlebars");
+var hbs = require("nodemailer-express-handlebars");
 var later = require('later');
 var moment = require('moment');
 moment().format();
@@ -38,10 +42,9 @@ module.exports = function (app) {
         }
       }
 
-
-      res.json(server)
-    })
-  })
+      res.json(server);
+    });
+  });
 
   // this route takes in the chosen salon and creates intervals for that service
   // those intervals are pushed to the front end
@@ -101,12 +104,34 @@ module.exports = function (app) {
   })
 
   // this route will let us save user data to the database
-  app.post("/api/reservations", function (req, res) {
+  app.post("/api/reservations", function(req, res) {
     console.log(req.body);
     // here we'll create a new object with the data from the front end
     // this route can't be completed without frontend js
-  })
+  });
 
-}
+  app.get("/email", function(req, res) {
+    console.log("email");
+    async function main() {
+      let transporter = nodemailer.createTransport({
+        host: "smtp.ethereal.email",
+        port: 587,
+        secure: false,
+        auth: {
+          user: "peter.keeling@ethereal.email",
+          pass: "tkEwbH5sjGzXjUmbTF"
+        }
+      });
 
-
+      let info = await transporter.sendMail({
+        from: "mcampbell0918@gmail.com",
+        to: "mcampbell0918@gmail.com",
+        subject: "Test",
+        text: "testing testing",
+        html: "<b>testing</b>"
+      });
+      console.log("Preview URL: " + nodemailer.getTestMessageUrl(info));
+    }
+    main().catch(console.error);
+  });
+};
