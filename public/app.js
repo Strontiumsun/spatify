@@ -15,14 +15,19 @@ $(document).ready(function () {
 
                 url: "/services",
                 function(req, res) {
-                    db.Salon.findAll().then(function (data) {
-                        console.log(data);
-                        res.render(
-                            "services",
-                            //add object here
-                            { data: data }
-                        );
-                    });
+                    db.Salon.findAll(
+                        {
+                            where: {
+                                name: "Lotus Spa"
+                            }
+                        }).then(function (data) {
+                            console.log(data);
+                            res.render(
+                                "services",
+                                //add object here
+                                { data: data }
+                            );
+                        });
 
                 }
                 // ajax request for data - week7/day-4 - movies
