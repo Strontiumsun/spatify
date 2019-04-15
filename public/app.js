@@ -26,4 +26,13 @@ $(document).ready(function () {
         });
         // });
     });
+
+
+    $("#formSubmit").on("click", function (event) {
+        event.preventDefault();
+        console.log("form submitted!");
+        $.get("/email", function (data) {
+            console.log(data);
+        });
+    });
 });
