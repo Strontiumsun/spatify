@@ -11,13 +11,23 @@ router.get("/", function (req, res) {
     //, { title: "blah" }
   );
 });
+//email script test========================
+//var script = [{ script: "../email.js" }];
+//email script test========================
 
+<<<<<<< HEAD
 router.get("/form", function (req, res) {
   res.render(
     "form"
     //add object here
     //, { title: "blah" }
   );
+=======
+router.get("/form", function(req, res) {
+  db.Salon.findAll().then(function(data) {
+    res.render("form", { data: data });
+  });
+>>>>>>> master
 });
 
 router.get("/services", function (req, res) {
