@@ -5,7 +5,7 @@ moment().format();
 
 module.exports = function (app) {
 
-  // this gets us all our salon data. Works
+  // this gets us all our salon data
   app.get("/api/salons", function (req, res) {
     db.Salon.findAll().then(function (data) {
       console.log(data)
@@ -20,6 +20,7 @@ module.exports = function (app) {
     })
   })
 
+  // this route gets all the salons that provide the chosen service
   app.get("/api/salons/services/:services", function (req, res) {
     db.Salon.findAll().then(function (data) {
       var serve;
@@ -27,19 +28,13 @@ module.exports = function (app) {
       // console.log(data);
       for (var i = 0; i < data.length; i++) {
         console.log(data[i].services)
-
         serve = data[i].services.toLowerCase();
-        // https://stackoverflow.com/questions/16253742/return-all-values-from-array-in-lowercase-using-for-loop-instead-of-map
-        // console.log(serve);
         serve = serve.split(", ")
         console.log(serve)
-        // save each string in an array with split
-        // loop through each new array and check for the term
+
         console.log(req.params.services)
         if (serve.includes(req.params.services)) {
           server.push(data[i])
-
-          // console.log(server)
         }
       }
 
@@ -48,6 +43,8 @@ module.exports = function (app) {
     })
   })
 
+  // this route takes in the chosen salon and creates intervals for that service
+  // those intervals are pushed to the front end
   app.get("/api/salons/services/:services/:salonID", function (req, res) {
     var service = req.params.services;
     var salonID = req.params.salonID;
@@ -60,7 +57,7 @@ module.exports = function (app) {
       }
     }).then(function (data) {
       foundSalon = data[0];
-      // console.log(foundSalon);
+
       db.Service.findAll({
         where: {
           serviceType: service
@@ -75,9 +72,8 @@ module.exports = function (app) {
         console.log(openTime, closeTime)
         console.log(interval)
 
-        // this function calculates intervals from the start to the end of the day for that salon
-        function laterIntervals(interval, dstart, dend) {
 
+        function laterIntervals(interval, dstart, dend) {
           var sched = later.schedule(later.parse.recur().every(interval).minute());
           start = new Date(`2019-05-22T${dstart}Z`);
           end = new Date(`2019-05-22T${dend}Z`)
@@ -85,11 +81,11 @@ module.exports = function (app) {
           var next = sched.next(35, start, end)
           // as long as the number here is sufficiently large, the program will run until it reaches the end time
 
-          // console.log(next[0].toUTCString())
+
 
           for (var i = 0; i < next.length; i++) {
             var splitter = next[i].toUTCString().split(" ");
-            // console.log(splitter[4])
+
             timeArr.push(splitter[4]);
 
           }
