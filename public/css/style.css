@@ -11,13 +11,12 @@ body {
 }
 header {
   text-align: center;
+  height: 150px;
 }
 
 .logo {
-  font-size: 30px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  margin-bottom: 0;
+  margin-top: 25px;
+  width: 150px;
 }
 
 .nav {
@@ -53,7 +52,7 @@ header {
   font-weight: 700;
 } */
 
-.service-buttons {
+.service-nav {
   width: 100%;
   height: 60px;
   background-color: #ffe4c6;
@@ -63,7 +62,7 @@ header {
   padding: 0;
 }
 
-button {
+.service-button {
   background-color: #ffe4c6; /* Green */
   border: none;
   color: #401406;
@@ -74,13 +73,39 @@ button {
   font-family: "Playfair Display", serif;
   font-size: 18px;
 }
+.time {
+  border: none;
+  color: #401406;
+  padding: 15px 42px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-family: "Playfair Display", serif;
+  font-size: 18px;
+  background-color: #a0bbbf;
+  border-radius: 5px;
+  margin-right: 10px;
+}
 
-button:hover {
+.time:hover {
+  background-color: #ec9472;
+}
+
+.picker__box {
+  background-color: #fff3e6;
+}
+
+.input-field input[type="text"].valid {
+  border-bottom: 1px solid #000;
+  box-shadow: 0 1px 0 0 #000;
+}
+
+.service-button:hover {
   font-family: "IBM Plex Serif", serif;
   font-weight: 700;
 }
 
-button:active {
+.service-button:active {
   font-family: "IBM Plex Serif", serif;
   font-weight: 700;
   text-decoration: underline;
@@ -94,4 +119,31 @@ button:active {
   font-size: 50px;
   font-weight: 700;
   /* line-height: 55px; */
+}
+
+.form-style {
+  width: 100%;
+  background-color: #ffe4c6;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+#spa-name {
+  font-family: "IBM Plex Serif", serif;
+  font-weight: 700;
+  font-size: 50px;
+}
+
+.submit {
+  border: none;
+  color: #ffe4c6;
+  padding: 15px 42px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-family: "Playfair Display", serif;
+  font-size: 18px;
+  background-color: #304020;
+  border-radius: 5px;
+  margin-right: 10px;
 }
