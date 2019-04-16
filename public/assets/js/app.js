@@ -44,7 +44,6 @@ $(document).ready(function() {
     }).then(function(data) {
       console.log(data[0].name);
       for (var i = 0; i < data.length; i++) {
-
         //var card = $("<div>").attr("class", "card");
         //var cardImage = $("<div>").attr("class", "card-image");
         //var image = $("<img>").attr("src", `${data[i].image}`);
@@ -75,6 +74,9 @@ $(document).ready(function() {
   });
 });
 
+{
+  /* <a href="/api/${data[i].id}">RESERVE</a> */
+}
 // on click button when...
 // if on click is working
 // grab data attribute
