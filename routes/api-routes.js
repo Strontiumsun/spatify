@@ -7,25 +7,25 @@ var later = require("later");
 var moment = require("moment");
 moment().format();
 
-module.exports = function(app) {
+module.exports = function (app) {
   // this gets us all our salon data
-  app.get("/api/salons", function(req, res) {
-    db.Salon.findAll().then(function(data) {
+  app.get("/api/salons", function (req, res) {
+    db.Salon.findAll().then(function (data) {
       console.log(data);
       res.json(data);
     });
   });
 
   // this gets us all our user data. Works, but without data so nothing will appear
-  app.get("/api/reservations", function(req, res) {
-    db.User.findAll().then(function(data) {
+  app.get("/api/reservations", function (req, res) {
+    db.User.findAll().then(function (data) {
       res.json(data);
     });
   });
 
   // this route gets all the salons that provide the chosen service
-  app.get("/api/salons/services/:services", function(req, res) {
-    db.Salon.findAll().then(function(data) {
+  app.get("/api/salons/services/:services", function (req, res) {
+    db.Salon.findAll().then(function (data) {
       var serve;
       var server = [];
       // console.log(data);
@@ -45,18 +45,18 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/:id", function(req, res) {
-    var id = req.params.id;
-    db.Salon.findAll({ where: { id: id } }).then(function(data) {
-      console.log("form", data);
-      res.render("form", data[0]);
-    });
-  });
+  // app.get("/:id", function (req, res) {
+  //   var id = req.params.id;
+  //   db.Salon.findAll({ where: { id: id } }).then(function (data) {
+  //     console.log("form", data);
+  //     res.render("form", data[0]);
+  //   });
+  // });
 
   // this route takes in the chosen salon and creates intervals for that service
   // those intervals are pushed to the front end
-  app.get("/api/salons/services/:services/:salonID", function(req, res) {
-    var service = req.params.services;
+  app.get("/api/salons/services/:services/:salonID", function (req, res) {
+    var service = req.params.services.toLowerCase();
     var salonID = req.params.salonID;
     var foundSalon;
     var timeArr = [];
@@ -65,14 +65,14 @@ module.exports = function(app) {
       where: {
         id: salonID
       }
-    }).then(function(data) {
+    }).then(function (data) {
       foundSalon = data[0];
 
       db.Service.findAll({
         where: {
           serviceType: service
         }
-      }).then(function(data) {
+      }).then(function (data) {
         var openTime = foundSalon.dataValues.opens;
         var closeTime = foundSalon.dataValues.closes;
 
@@ -102,19 +102,29 @@ module.exports = function(app) {
           console.log(timeArr);
         }
         laterIntervals(interval, openTime, closeTime);
-        res.json({ times: timeArr });
+
+        // res.json({
+        //   id: salonID,
+        //   times: timeArr
+        // });
+
+        res.render("form", {
+          id: salonID,
+          times: timeArr
+        })
+
       });
     });
   });
 
   // this route will let us save user data to the database
-  app.post("/api/reservations", function(req, res) {
+  app.post("/api/reservations", function (req, res) {
     console.log(req.body);
     // here we'll create a new object with the data from the front end
     // this route can't be completed without frontend js
   });
 
-  app.post("/email", function(req, res) {
+  app.post("/email", function (req, res) {
     //console.log(req);
     console.log("eee", req.body);
     console.log("email");
@@ -137,9 +147,9 @@ module.exports = function(app) {
         text: "hey hey email is here!",
         html: `<b>Sup ${
           req.body.userName
-        } </b> <br /> <p> You are receiving this email because you clicked the submit button. You have an appointment on ${
+          } </b> <br /> <p> You are receiving this email because you clicked the submit button. You have an appointment on ${
           req.body.userDate
-        } at IDK HOW TO GET TIME FROM THE BUTTONS</p>`
+          } at IDK HOW TO GET TIME FROM THE BUTTONS</p>`
       };
 
       //let info = await
