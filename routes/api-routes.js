@@ -94,13 +94,10 @@ module.exports = function (app) {
         laterIntervals(interval, openTime, closeTime);
 
 
-        // res.json({
-        //   id: salonID,
-        //   times: timeArr
-        // });
-
-        res.render("form")
-
+        res.json({
+          id: salonID,
+          times: timeArr
+        });
       });
     });
   });

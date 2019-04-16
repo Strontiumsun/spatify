@@ -10,7 +10,7 @@ $(document).ready(function () {
         }
     });
 
-    $("#formSubmit").on("click", function (event) {
+    $(document).on("click", "#formSubmit", function (event) {
         event.preventDefault();
         var userEmail = $("#email")
             .val()
@@ -81,7 +81,7 @@ $(document).ready(function () {
                     <p>${data[i].services}</p>
                 </div>
                 <div class="card-action">
-                  <a href="/${data[i].id}">RESERVE</a></div>
+                  <button class="click-form" data-id="${data[i].id}" data-services="${data[i].services}" data-name="${data[i].name}" >RESERVE</button>
                 </div> 
                 
                 </div>`);
@@ -91,13 +91,54 @@ $(document).ready(function () {
         $(document).on("click", ".click-form", function () {
             var formID = $(this).attr("data-id");
             var formService = $(this).attr("data-services")
-
+            var formName = $(this).attr("data-name")
+            // location.reload("/form");
             // console.log(formService)
             $.ajax({
                 url: `/api/salons/services/${formService}/${formID}`,
                 method: "GET"
             }).then(function (data) {
-                window.location.href = "/form"
+                console.log(data)
+                var times = data.times
+                console.log(times)
+                $(".search-result").empty();
+                $(".search-result").append(`<div class="container">
+                <div class="form-style">
+                    <div id="spa-name">You chose: ${formName}</div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            Your Name:
+                            <input id="full_name" type="text" class="validate" />
+                            
+                        </div>
+                        <div class="input-field col s6">
+                            Date:
+                            <input type="text" id="user_date" class="datepicker" />
+                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button class="time" id="time1">${data.times[0]}</button>
+                        <button class="time" id="time2">11:00</button>
+                        <button class="time" id="time3">12:00</button>
+                        <button class="time" id="time4">13:00</button>
+                        <button class="time" id="time5">14:00</button>
+                        <button class="time" id="time6">15:00</button>
+                        <button class="time" id="time7">16:00</button>
+                        <button class="time" id="time8">17:00</button>
+                    </div>
+            
+                    <form action="/" method="POST">
+                        Email:
+                        <input type="text" id="email" />
+                    </form>
+                    <br />
+            
+                    <button class="submit" type="submit" id="formSubmit">Submit</button>
+                </div>
+            </div>`);
+
+
             })
         })
 
