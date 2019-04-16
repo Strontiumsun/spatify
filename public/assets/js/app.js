@@ -81,13 +81,15 @@ $(document).ready(function() {
                     <p>${data[i].services}</p>
                 </div>
                 <div class="card-action">
-                  <a href="/${data[i].id}">RESERVE</a></div>
+                  <a href="/form">RESERVE</a>
+                </div>
                 </div> 
-                
                 </div>`);
       }
     });
   });
+
+  $(".datepicker").datepicker();
 });
 
 {
