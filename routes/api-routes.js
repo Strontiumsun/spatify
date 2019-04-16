@@ -131,7 +131,7 @@ module.exports = function(app) {
           req.body.userName
         } </b> <br /> <p> You are receiving this email because you clicked the submit button. You have an appointment on ${
           req.body.userDate
-        } at IDK HOW TO GET TIME FROM THE BUTTONS</p>`
+        } at ${req.body.userTime}`
       };
 
       //let info = await

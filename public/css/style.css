@@ -142,6 +142,10 @@ h5 {
   background-color: #ec9472;
 }
 
+.time:focus {
+  background-color: #304020;
+}
+
 .picker__box {
   background-color: #fff3e6;
 }

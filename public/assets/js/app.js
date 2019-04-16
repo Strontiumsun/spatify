@@ -12,18 +12,17 @@ $(document).ready(function() {
     var userDate = $("#user_date")
       .val()
       .trim();
-    // var userTime = $(this.time)
-    //   .val()
-    //   .trim();
-    console.log("THIS!!!", this.value);
+    var userTime = $(".time:active").text();
+
+    console.log("THIS!!!", userTime);
     console.log("user email!", userEmail);
     console.log("form submitted!");
 
     var userInfo = {
       userEmail: userEmail,
       userName: userName,
-      userDate: userDate
-      //,userTime: userTime //We need to get some unique property to identify which time button was clicked
+      userDate: userDate,
+      userTime: userTime //We need to get some unique property to identify which time button was clicked
     };
     if (userInfo.userEmail === "") {
       alert("enter valid email");
