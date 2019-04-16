@@ -12,7 +12,7 @@ $(document).ready(function () {
 
     $(".service-button").on("click", function () {
         // console.log("clicked " + $(this).attr("data-name"))
-
+        $("#append-here").empty()
         var buttonName = $(this).attr("data-name");
         console.log(buttonName)
 
@@ -22,15 +22,16 @@ $(document).ready(function () {
         }).then(function (data) {
             console.log(data[0].name)
             for (var i = 0; i < data.length; i++) {
-                $("#append-here").append(`<div class="card-image"><img src='${data[i].image}'><span class="card-title">
-                                        <h5>${data[i].name}</h5>
-                                    </span>
-                                   <div class="card-content">
-            
-                                      <p>${data[i].services}</p>
-            
-                                   </div>
-                              </div>`)
+                $("#append-here").append(`
+                <div class="card">
+                <div class="card-image">
+                <img src='${data[i].image}'>
+                <span class="card-title"><h5>${data[i].name}</h5></span>
+                <div class="card-content">
+                    <p>${data[i].services}</p>
+                </div>
+                </div>
+            </div>`)
             }
         })
     })
