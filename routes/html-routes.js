@@ -28,7 +28,7 @@ router.get("/services", function(req, res) {
 });
 
 router.get("/deals", function(req, res) {
-  res.render("services");
+  res.render("deals");
 });
 
 module.exports = router;

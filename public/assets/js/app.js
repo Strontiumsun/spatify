@@ -53,7 +53,7 @@ $(document).ready(function() {
                     <p>${data[i].services}</p>
                 </div>
                 <div class="card-action">
-                  <a href="/form">RESERVE</a>
+                  <a href="/${data[i].id}">RESERVE</a>
                 </div>  
                 </div>
             </div>`);
