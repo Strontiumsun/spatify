@@ -16,11 +16,7 @@ router.get("/", function(req, res) {
 //email script test========================
 
 router.get("/form", function(req, res) {
-  res.render(
-    "form"
-    //add object here
-    //, { title: "blah" }
-  );
+  res.render("form");
 });
 
 router.get("/services", function(req, res) {
