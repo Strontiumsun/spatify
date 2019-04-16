@@ -83,7 +83,6 @@ $(document).ready(function () {
             url: `/api/salons/services/${formService}/${formID}`,
             method: "GET"
         }).then(function (data) {
-            console.log(data)
             window.location.href = "/form"
         })
     })

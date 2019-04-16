@@ -1,8 +1,6 @@
 var db = require("../models");
 var Salon = require("../models/salon");
 const nodemailer = require("nodemailer");
-var exphbs = require("express-handlebars");
-var hbs = require("nodemailer-express-handlebars");
 var later = require("later");
 var moment = require("moment");
 moment().format();
@@ -103,15 +101,13 @@ module.exports = function (app) {
         }
         laterIntervals(interval, openTime, closeTime);
 
+
         // res.json({
         //   id: salonID,
         //   times: timeArr
         // });
 
-        res.render("form", {
-          id: salonID,
-          times: timeArr
-        })
+        res.render("form")
 
       });
     });

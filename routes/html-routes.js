@@ -18,8 +18,6 @@ router.get("/", function (req, res) {
 router.get("/form", function (req, res) {
   res.render(
     "form"
-    //add object here
-    //, { title: "blah" }
   );
 });
 
