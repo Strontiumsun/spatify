@@ -81,6 +81,11 @@ header {
   font-size: 18px;
 }
 
+.center-col {
+  display: inline-block;
+  margin: 20px;
+}
+
 /* big blue deals button */
 #deals {
   font-family: "IBM Plex Serif", serif;
@@ -113,13 +118,7 @@ h5 {
 
 .card {
   box-shadow: none !important;
-  width: 400px;
-  height: 350px;
   margin: 20px;
-}
-.card-body {
-  width: 400px;
-  height: 350px;
 }
 
 /* FORMS CSS */

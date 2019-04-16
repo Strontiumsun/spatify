@@ -57,7 +57,7 @@ $(document).ready(function() {
         //card.append(cardImage, cardTitle);
         //$("#append-here").append(card);
         $("#append-here").append(`
-                <div class="row">
+                
                 <div class="col s12 m6 l4">
                 <div class="card">
                 <div class="card-image">
@@ -70,7 +70,7 @@ $(document).ready(function() {
                 <div class="card-action">
                   <a href="/${data[i].id}">RESERVE</a></div>
                 </div> 
-                </div> 
+                
                 </div>`);
       }
     });
