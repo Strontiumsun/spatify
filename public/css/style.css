@@ -142,6 +142,10 @@ h5 {
   background-color: #ec9472;
 }
 
+.active {
+  background-color: #00dfcf;
+}
+
 .picker__box {
   background-color: #fff3e6;
 }
