@@ -32,19 +32,19 @@ $(document).ready(function() {
     }
   });
 
-    $(".service-button").on("click", function () {
-        // console.log("clicked " + $(this).attr("data-name"))
-        $("#append-here").empty()
-        var buttonName = $(this).attr("data-name");
-        console.log(buttonName)
+  $(".service-button").on("click", function() {
+    // console.log("clicked " + $(this).attr("data-name"))
+    $("#append-here").empty();
+    var buttonName = $(this).attr("data-name");
+    console.log(buttonName);
 
-        $.ajax({
-            url: `/api/salons/services/${buttonName}`,
-            method: "GET"
-        }).then(function (data) {
-            console.log(data[0].name)
-            for (var i = 0; i < data.length; i++) {
-                $("#append-here").append(`
+    $.ajax({
+      url: `/api/salons/services/${buttonName}`,
+      method: "GET"
+    }).then(function(data) {
+      console.log(data[0].name);
+      for (var i = 0; i < data.length; i++) {
+        $("#append-here").append(`
                 <div class="card">
                 <div class="card-image">
                 <img src='${data[i].image}'>
@@ -52,11 +52,14 @@ $(document).ready(function() {
                 <div class="card-content">
                     <p>${data[i].services}</p>
                 </div>
+                <div class="card-action">
+                  <a href="/form">RESERVE</a>
+                </div>  
                 </div>
-            </div>`)
-            }
-        })
-    })
+            </div>`);
+      }
+    });
+  });
 });
 
 // on click button when...
