@@ -10,24 +10,20 @@ append name to #spa-name, use flatpickr package to import available dates -->
 <div class="container">
     <div class="form-style">
         {{!-- Name needs to come from some AJAX call or something but for now I'm just calling a placeholder from the db --}}
-        <div id="spa-name">You chose: {{this.dataValues.name}}</div>
+        <div id="spa-name">You chose: {{data.id}}</div>
         <div class="row">
             <div class="input-field col s6">
                 Your Name:
                 <input id="full_name" type="text" class="validate" />
-                <!-- <label for="full-name">Full Name</label> -->
+
             </div>
             <div class="input-field col s6">
                 Date:
                 <input type="text" id="user_date" class="datepicker" />
-                <!-- <label for="date">Date</label> -->
+
             </div>
         </div>
         <div class="row">
-            {{#each this.appointment-time}}
-            {{!-- make a button dynamically --}}
-            {{/each}}
-
             <button class="time" id="time1">10:00</button>
             <button class="time" id="time2">11:00</button>
             <button class="time" id="time3">12:00</button>
@@ -39,7 +35,6 @@ append name to #spa-name, use flatpickr package to import available dates -->
         </div>
 
         <form action="/" method="POST">
-            <!-- <textarea type="text" name="???"></textarea> -->
             Email:
             <input type="text" id="email" />
         </form>
