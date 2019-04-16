@@ -123,6 +123,10 @@ h5 {
 
 /* FORMS CSS */
 /* time row in form */
+.form-style {
+  margin-top: 50px;
+}
+
 .time {
   border: none;
   color: #401406;
