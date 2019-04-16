@@ -43,18 +43,10 @@ module.exports = function (app) {
     });
   });
 
-  // app.get("/:id", function (req, res) {
-  //   var id = req.params.id;
-  //   db.Salon.findAll({ where: { id: id } }).then(function (data) {
-  //     console.log("form", data);
-  //     res.render("form", data[0]);
-  //   });
-  // });
-
   // this route takes in the chosen salon and creates intervals for that service
   // those intervals are pushed to the front end
   app.get("/api/salons/services/:services/:salonID", function (req, res) {
-    var service = req.params.services.toLowerCase();
+    var service = req.params.services;
     var salonID = req.params.salonID;
     var foundSalon;
     var timeArr = [];
@@ -141,11 +133,13 @@ module.exports = function (app) {
         to: `${req.body.userEmail}`,
         subject: "Test",
         text: "hey hey email is here!",
-        html: `<b>Sup ${
+        html: `<h1>Spatify Auto Confirmation</h1>
+        <hr />
+        <b>Sup ${
           req.body.userName
-          } </b> <br /> <p> You are receiving this email because you clicked the submit button. You have an appointment on ${
+          } </b> <br /> <p> You are receiving this email because you reserved a [SERVICE] at [SPA]. You have an appointment on ${
           req.body.userDate
-          } at IDK HOW TO GET TIME FROM THE BUTTONS</p>`
+          } at ${req.body.userTime}`
       };
 
       //let info = await
