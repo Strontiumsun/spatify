@@ -127,9 +127,11 @@ module.exports = function(app) {
         to: `${req.body.userEmail}`,
         subject: "Test",
         text: "hey hey email is here!",
-        html: `<b>Sup ${
+        html: `<h1>Spatify Auto Confirmation</h1>
+        <hr />
+        <b>Sup ${
           req.body.userName
-        } </b> <br /> <p> You are receiving this email because you clicked the submit button. You have an appointment on ${
+        } </b> <br /> <p> You are receiving this email because you reserved a [SERVICE] at [SPA]. You have an appointment on ${
           req.body.userDate
         } at ${req.body.userTime}`
       };
