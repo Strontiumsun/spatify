@@ -16,30 +16,19 @@ router.get("/", function(req, res) {
 //email script test========================
 
 router.get("/form", function(req, res) {
-  db.Salon.findAll().then(function(data) {
-    res.render("form", { data: data });
-  });
+  res.render(
+    "form"
+    //add object here
+    //, { title: "blah" }
+  );
 });
 
 router.get("/services", function(req, res) {
-  db.Salon.findAll().then(function(data) {
-    console.log(data);
-    res.render(
-      "services",
-      //add object here
-      { data: data }
-    );
-  });
+  res.render("services");
 });
 
-// router.get("/services/nails", function(req, res) {
-//   db.Salon.findAll().then(function(data) {
-//     console.log(data);
-//     res.render(
-//       "services",
-//       //add object here
-//       { data: data }
-//     );
-//   });
-// });
+router.get("/deals", function(req, res) {
+  res.render("services");
+});
+
 module.exports = router;

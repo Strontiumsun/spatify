@@ -30,12 +30,12 @@ module.exports = function(app) {
       var server = [];
       // console.log(data);
       for (var i = 0; i < data.length; i++) {
-        console.log(data[i].services);
+        // console.log(data[i].services)
         serve = data[i].services.toLowerCase();
         serve = serve.split(", ");
-        console.log(serve);
+        // console.log(serve)
 
-        console.log(req.params.services);
+        // console.log(req.params.services)
         if (serve.includes(req.params.services)) {
           server.push(data[i]);
         }
@@ -106,7 +106,9 @@ module.exports = function(app) {
     // this route can't be completed without frontend js
   });
 
-  app.get("/email", function(req, res) {
+  app.post("/email", function(req, res) {
+    //console.log(req);
+    console.log("eee", req.body);
     console.log("email");
     async function main() {
       let transporter = nodemailer.createTransport({
@@ -122,21 +124,27 @@ module.exports = function(app) {
 
       var mailOptions = {
         from: "spatifyTest123@gmail.com",
-        to: "mcampbell0918@gmail.com",
+        to: `${req.body.userEmail}`,
         subject: "Test",
-        text: "testing testing",
-        html: "<b>testing</b>"
+        text: "hey hey email is here!",
+        html: `<b>Sup ${
+          req.body.userName
+        } </b> <br /> <p> You are receiving this email because you clicked the submit button. You have an appointment on ${
+          req.body.userDate
+        } at IDK HOW TO GET TIME FROM THE BUTTONS</p>`
       };
 
       //let info = await
       transporter.sendMail(mailOptions, (err, info) => {
-        if (err) throw err;
-        else {
+        if (err) {
+          throw new Error("Error: the email form was left blank");
+        } else {
           console.log(info);
         }
       });
       //console.log("Preview URL: " + nodemailer.getTestMessageUrl(info));
     }
     main().catch(console.error);
+    res.redirect("/services");
   });
 };
