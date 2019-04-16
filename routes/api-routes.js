@@ -100,11 +100,19 @@ module.exports = function (app) {
   });
 
   // this route will let us save user data to the database
-  app.post("/api/reservations", function (req, res) {
-    console.log(req.body);
-    // here we'll create a new object with the data from the front end
-    // this route can't be completed without frontend js
-  });
+  //   app.post("/api/reservations", function (req, res) {
+  //     console.log(req.body);
+  //     db.User.create({
+  //       email: req.body.text,
+  //       name: req.body.complete
+  //     }).then(function (dbTodo) {
+  //       // We have access to the new todo as an argument inside of the callback function
+  //       res.json(dbTodo);
+  //     });
+  //   });
+  //   // here we'll create a new object with the data from the front end
+  //   // this route can't be completed without frontend js
+  // });
 
   app.post("/email", function (req, res) {
     //console.log(req);
