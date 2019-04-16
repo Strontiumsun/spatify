@@ -32,4 +32,14 @@ router.get("/services", function(req, res) {
   });
 });
 
+// router.get("/services/nails", function(req, res) {
+//   db.Salon.findAll().then(function(data) {
+//     console.log(data);
+//     res.render(
+//       "services",
+//       //add object here
+//       { data: data }
+//     );
+//   });
+// });
 module.exports = router;
