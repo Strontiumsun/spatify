@@ -107,8 +107,8 @@ module.exports = function(app) {
   });
 
   app.post("/email", function(req, res) {
-    console.log(req);
-    console.log("eee", req.body.userEmail);
+    //console.log(req);
+    console.log("eee", req.body);
     console.log("email");
     async function main() {
       let transporter = nodemailer.createTransport({
@@ -127,14 +127,18 @@ module.exports = function(app) {
         to: `${req.body.userEmail}`,
         subject: "Test",
         text: "hey hey email is here!",
-        html:
-          "<b>Sup</b> <br /> <p> You are receiving this email because you clicked the spa button </p>"
+        html: `<b>Sup ${
+          req.body.userName
+        } </b> <br /> <p> You are receiving this email because you clicked the submit button. You have an appointment on ${
+          req.body.userDate
+        } at IDK HOW TO GET TIME FROM THE BUTTONS</p>`
       };
 
       //let info = await
       transporter.sendMail(mailOptions, (err, info) => {
-        if (err) throw err;
-        else {
+        if (err) {
+          throw new Error("Error: the email form was left blank");
+        } else {
           console.log(info);
         }
       });

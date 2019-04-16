@@ -14,8 +14,29 @@ $(document).ready(function() {
     var userEmail = $("#email")
       .val()
       .trim();
+    var userName = $("#full_name")
+      .val()
+      .trim();
+    var userDate = $("#user_date")
+      .val()
+      .trim();
+    // var userTime = $(this.time)
+    //   .val()
+    //   .trim();
+    console.log("THIS!!!", this.value);
     console.log("user email!", userEmail);
     console.log("form submitted!");
-    $.post("/email", { userEmail });
+
+    var userInfo = {
+      userEmail: userEmail,
+      userName: userName,
+      userDate: userDate
+      //,userTime: userTime //We need to get some unique property to identify which time button was clicked
+    };
+    if (userInfo.userEmail === "") {
+      alert("enter valid email");
+    } else {
+      $.post("/email", userInfo);
+    }
   });
 });
