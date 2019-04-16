@@ -45,14 +45,6 @@ module.exports = function (app) {
     });
   });
 
-  // app.get("/:id", function(req, res) {
-  //   var id = req.params.id;
-  //   db.Salon.findAll({ where: { id: id } }).then(function(data) {
-  //     console.log("form", data);
-  //     res.render("form", data[0]);
-  //   });
-  // });
-
   // this route takes in the chosen salon and creates intervals for that service
   // those intervals are pushed to the front end
   app.get("/api/salons/services/:services/:salonID", function (req, res) {
