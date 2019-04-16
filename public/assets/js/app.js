@@ -44,6 +44,19 @@ $(document).ready(function() {
     }).then(function(data) {
       console.log(data[0].name);
       for (var i = 0; i < data.length; i++) {
+
+        //var card = $("<div>").attr("class", "card");
+        //var cardImage = $("<div>").attr("class", "card-image");
+        //var image = $("<img>").attr("src", `${data[i].image}`);
+        //var cardTitle = $("<span>").attr("class", "card-title");
+        //var title = $("<h5>").html(`${data[i].name}`);
+        //var cardContent = $("<div>").attr("class", "card-content");
+        //var cardText = $("<p>").html(`${data[i].services}`);
+
+        //cardTitle.append(title, cardText);
+        //cardImage.append(image);
+        //card.append(cardImage, cardTitle);
+        //$("#append-here").append(card);
         $("#append-here").append(`
                 <div class="card">
                 <div class="card-image">
