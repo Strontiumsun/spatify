@@ -1,6 +1,15 @@
 $(document).ready(function () {
     console.log("ready");
 
+    $("#formSubmit").on("click", function (event) {
+        event.preventDefault();
+        console.log("form submitted!");
+        $.get("/email", function (data) {
+            console.log(data);
+        });
+    });
+
+
     $(".service-button").on("click", function () {
         // console.log("clicked " + $(this).attr("data-name"))
 
@@ -13,18 +22,18 @@ $(document).ready(function () {
         }).then(function (data) {
             console.log(data[0].name)
             for (var i = 0; i < data.length; i++) {
-                $("#append-here").append(`<h1>${data[i].name}</h1>`)
+                $("#append-here").append(`<div class="card-image"><img src='${data[i].image}'><span class="card-title">
+                                        <h5>${data[i].name}</h5>
+                                    </span>
+                                   <div class="card-content">
+            
+                                      <p>${data[i].services}</p>
+            
+                                   </div>
+                              </div>`)
             }
         })
     })
-    // $("#services").on("click", function (event) {
-    //     $(".about-container").hide();
-    //     // $(".filler-container").append($(".search-result"))
-    //     console.log("services button clicked");
-    //     event.preventDefault();
-    //     // ajax request for data - week7/day-4 - movies
-    // });
-
 });
 
 // on click button when...
