@@ -2,14 +2,18 @@ $(document).ready(function() {
   console.log("ready");
   $(".datepicker").datepicker();
 
-  $(".time").on("click", function(event) {
-    if ($(".time").find(".active")) {
-      $(".time").removeClass("active");
-      $(this).addClass("active");
-    } else {
-      $(this).addClass("active");
-    }
-  });
+
+    // for email
+    var formName;
+
+    $(document).on("click", ".time", function (event) {
+        if ($(".time").find(".active")) {
+            $(".time").removeClass("active");
+            $(this).addClass("active");
+        } else {
+            $(this).addClass("active");
+        }
+    });
 
   $(document).on("click", "#formSubmit", function(event) {
     event.preventDefault();
@@ -28,23 +32,24 @@ $(document).ready(function() {
     console.log("user email!", userEmail);
     console.log("form submitted!");
 
-    var userInfo = {
-      userEmail: userEmail,
-      userName: userName,
-      userDate: userDate,
-      userTime: userTime //We need to get some unique property to identify which time button was clicked
-    };
-    if (userInfo.userEmail === "") {
-      alert("enter valid email");
-    } else {
-      $.post("/email", userInfo);
-      if ($(".time").find(".active")) {
-        $(this).removeClass("active");
-        alert("Reservation Confirmed! Check your email!");
-        window.location.href = "/";
-      }
-    }
-  });
+        var userInfo = {
+            userEmail: userEmail,
+            userName: userName,
+            userDate: userDate,
+            userTime: userTime, //We need to get some unique property to identify which time button was clicked
+            userSelection: formName
+        };
+        if (userInfo.userEmail === "") {
+            alert("enter valid email");
+        } else {
+            $.post("/email", userInfo);
+            if ($(".time").find(".active")) {
+                $(this).removeClass("active");
+                alert("Reservation Confirmed! Check your email!");
+                window.location.href = "/";
+            }
+        }
+    });
 
   $(".service-button").on("click", function() {
     // console.log("clicked " + $(this).attr("data-name"))
@@ -92,21 +97,26 @@ $(document).ready(function() {
       }
     });
 
-    $(document).on("click", ".click-form", function() {
-      var formID = $(this).attr("data-id");
-      var formService = $(this).attr("data-services");
-      var formName = $(this).attr("data-name");
-      // location.reload("/form");
-      // console.log(formService)
-      $.ajax({
-        url: `/api/salons/services/${formService}/${formID}`,
-        method: "GET"
-      }).then(function(data) {
-        console.log(data);
-        var times = data.times;
-        console.log(times);
-        $(".search-result").empty();
-        $(".search-result").append(`<div class="container">
+        $(document).on("click", ".click-form", function () {
+            var formID = $(this).attr("data-id");
+            var formService = $(this).attr("data-services")
+            formName = $(this).attr("data-name")
+            // location.reload("/form");
+            // console.log(formService)
+            $.ajax({
+                url: `/api/salons/services/${formService}/${formID}`,
+                method: "GET"
+            }).then(function (data) {
+                var divData = "";
+                console.log(data)
+                var times = data.times
+                console.log(times)
+                for (let i = 0; i < data.times.length; i++) {
+                    divData += `<button class="time" id="time1">${data.times[i]}</button>`
+                }
+                $(".search-result").empty();
+                $(".search-result").append(`<div class="container">
+
                 <div class="form-style">
                     <div id="spa-name">You chose: ${formName}</div>
                     <div class="row">
@@ -122,17 +132,9 @@ $(document).ready(function() {
                         </div>
                     </div>
                     <div class="row">
-                        <button class="time" id="time1">${
-                          data.times[0]
-                        }</button>
-                        <button class="time" id="time2">11:00</button>
-                        <button class="time" id="time3">12:00</button>
-                        <button class="time" id="time4">13:00</button>
-                        <button class="time" id="time5">14:00</button>
-                        <button class="time" id="time6">15:00</button>
-                        <button class="time" id="time7">16:00</button>
-                        <button class="time" id="time8">17:00</button>
-                    </div>
+
+                    ${divData}
+    </div>
             
                     <form action="/" method="POST">
                         Email:
@@ -143,7 +145,14 @@ $(document).ready(function() {
                     <button class="submit" type="submit" id="formSubmit">Submit</button>
                 </div>
             </div>`);
-      });
+
+            })
+        })
     });
-  });
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.datepicker');
+        var instances = M.Datepicker.init(elems, options);
+    });
+
+    $('.datepicker').datepicker();
 });
