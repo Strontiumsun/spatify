@@ -121,8 +121,24 @@ h5 {
   margin: 20px;
 }
 
+.click-form {
+  border: none;
+  color: #401406;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-family: "Playfair Display", serif;
+  font-size: 18px;
+  background-color: #ec9472;
+}
+
 /* FORMS CSS */
 /* time row in form */
+.form-style {
+  margin-top: 50px;
+}
+
 .time {
   border: none;
   color: #401406;

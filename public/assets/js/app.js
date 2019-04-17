@@ -1,6 +1,6 @@
-$(document).ready(function () {
-    console.log("ready");
-
+$(document).ready(function() {
+  console.log("ready");
+  $(".datepicker").datepicker();
 
 
     // for email
@@ -15,22 +15,22 @@ $(document).ready(function () {
         }
     });
 
-    $(document).on("click", "#formSubmit", function (event) {
-        event.preventDefault();
-        var userEmail = $("#email")
-            .val()
-            .trim();
-        var userName = $("#full_name")
-            .val()
-            .trim();
-        var userDate = $("#user_date")
-            .val()
-            .trim();
-        var userTime = $(".active").text();
+  $(document).on("click", "#formSubmit", function(event) {
+    event.preventDefault();
+    var userEmail = $("#email")
+      .val()
+      .trim();
+    var userName = $("#full_name")
+      .val()
+      .trim();
+    var userDate = $("#user_date")
+      .val()
+      .trim();
+    var userTime = $(".active").text();
 
-        console.log("THIS!!!", userTime);
-        console.log("user email!", userEmail);
-        console.log("form submitted!");
+    console.log("THIS!!!", userTime);
+    console.log("user email!", userEmail);
+    console.log("form submitted!");
 
         var userInfo = {
             userEmail: userEmail,
@@ -51,31 +51,31 @@ $(document).ready(function () {
         }
     });
 
-    $(".service-button").on("click", function () {
-        // console.log("clicked " + $(this).attr("data-name"))
-        $("#append-here").empty();
-        var buttonName = $(this).attr("data-name");
-        console.log(buttonName);
+  $(".service-button").on("click", function() {
+    // console.log("clicked " + $(this).attr("data-name"))
+    $("#append-here").empty();
+    var buttonName = $(this).attr("data-name");
+    console.log(buttonName);
 
-        $.ajax({
-            url: `/api/salons/services/${buttonName}`,
-            method: "GET"
-        }).then(function (data) {
-            console.log(data[0].name);
-            for (var i = 0; i < data.length; i++) {
-                //var card = $("<div>").attr("class", "card");
-                //var cardImage = $("<div>").attr("class", "card-image");
-                //var image = $("<img>").attr("src", `${data[i].image}`);
-                //var cardTitle = $("<span>").attr("class", "card-title");
-                //var title = $("<h5>").html(`${data[i].name}`);
-                //var cardContent = $("<div>").attr("class", "card-content");
-                //var cardText = $("<p>").html(`${data[i].services}`);
+    $.ajax({
+      url: `/api/salons/services/${buttonName}`,
+      method: "GET"
+    }).then(function(data) {
+      console.log(data[0].name);
+      for (var i = 0; i < data.length; i++) {
+        //var card = $("<div>").attr("class", "card");
+        //var cardImage = $("<div>").attr("class", "card-image");
+        //var image = $("<img>").attr("src", `${data[i].image}`);
+        //var cardTitle = $("<span>").attr("class", "card-title");
+        //var title = $("<h5>").html(`${data[i].name}`);
+        //var cardContent = $("<div>").attr("class", "card-content");
+        //var cardText = $("<p>").html(`${data[i].services}`);
 
-                //cardTitle.append(title, cardText);
-                //cardImage.append(image);
-                //card.append(cardImage, cardTitle);
-                //$("#append-here").append(card);
-                $("#append-here").append(`
+        //cardTitle.append(title, cardText);
+        //cardImage.append(image);
+        //card.append(cardImage, cardTitle);
+        //$("#append-here").append(card);
+        $("#append-here").append(`
                 
                 <div class="col s12 m6 l4">
                 <div class="card">
@@ -87,12 +87,15 @@ $(document).ready(function () {
                     <p>${data[i].services}</p>
                 </div>
                 <div class="card-action">
-                  <button class="click-form" data-id="${data[i].id}" data-services="${data[i].services}" data-name="${data[i].name}" >RESERVE</button>
+                  <button class="click-form" data-id="${
+                    data[i].id
+                  }" data-services="${data[i].services}" data-name="${
+          data[i].name
+        }" >RESERVE</button>
                 </div> 
-                
                 </div>`);
-            }
-        });
+      }
+    });
 
         $(document).on("click", ".click-form", function () {
             var formID = $(this).attr("data-id");
@@ -113,6 +116,7 @@ $(document).ready(function () {
                 }
                 $(".search-result").empty();
                 $(".search-result").append(`<div class="container">
+
                 <div class="form-style">
                     <div id="spa-name">You chose: ${formName}</div>
                     <div class="row">
@@ -130,7 +134,7 @@ $(document).ready(function () {
                     <div class="row">
 
                     ${divData}
-                    </div>
+    </div>
             
                     <form action="/" method="POST">
                         Email:
@@ -141,6 +145,7 @@ $(document).ready(function () {
                     <button class="submit" type="submit" id="formSubmit">Submit</button>
                 </div>
             </div>`);
+
             })
         })
     });
@@ -151,4 +156,3 @@ $(document).ready(function () {
 
     $('.datepicker').datepicker();
 });
-
