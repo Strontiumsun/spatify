@@ -142,7 +142,7 @@ module.exports = function (app) {
         <hr />
         <b>Sup ${
           req.body.userName
-          } </b> <br /> <p> You are receiving this email because you reserved a [SERVICE] at [SPA]. You have an appointment on ${
+          } </b> <br /> <p> You are receiving this email because you reserved at ${req.body.userSelection}. You have an appointment on ${
           req.body.userDate
           } at ${req.body.userTime}`
       };
