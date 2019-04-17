@@ -7,8 +7,6 @@ var Salon = require("../models/salon");
 router.get("/", function (req, res) {
   res.render(
     "index"
-    //add object here
-    //, { title: "blah" }
   );
 });
 //email script test========================
